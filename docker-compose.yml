@@ -1,0 +1,21 @@
+services:
+  database:
+    container_name: database
+    image: ${POSTGRES_IMAGE}
+    ports:
+      - ${POSTGRES_PORT}
+    restart: always
+    env_file:
+      - path: .env
+    volumes:
+      - database:/var/lib/postgresql/data
+      - ./database/schema:/schema
+      - ./database/init-database.sh:/docker-entrypoint-initdb.d/init-postgres.sh
+
+volumes:
+  database:
+    driver: local
+
+networks:
+  default:
+    name: dev-net

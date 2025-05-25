@@ -1,7 +1,7 @@
 import pytest
 from datetime import date
 
-from utils.helper import create_api_endpoint, insert_symbol
+from utils.helper import create_api_endpoint, insert_symbol, create_database_connection_info
 
 def test_create_api_endpoint():
     # arrange
@@ -11,35 +11,23 @@ def test_create_api_endpoint():
     # assert
     assert test == expect
 
-def test_insert_symbol_value():
+def test_insert_symbol():
     # arrange
-    test = [
-        {
-            "fiscal_date_ending": date(2024, 12, 31),
-            "currency": "USD",
-            "revenue": 1000000
-        },
-        {
-            "fiscal_date_ending": date(2023, 12, 31),
-            "currency": "USD",
-            "revenue": 2000000
-        }
-    ]
-    expect = [
-        {
-            "symbol": "ABC",
-            "fiscal_date_ending": date(2024, 12, 31),
-            "currency": "USD",
-            "revenue": 1000000
-        },
-        {
-            "symbol": "ABC",
-            "fiscal_date_ending": date(2023, 12, 31),
-            "currency": "USD",
-            "revenue": 2000000
-        }
-    ]
+    class Test:
+        symbol = None
+    test = [ Test, Test ]
+    class Expect:
+        symbol = "ABC"
+    expect = [ Expect, Expect]
     # act
     insert_symbol("ABC", test)
+    # assert
+    assert Test.symbol == Expect.symbol
+
+def test_create_database_connection_info():
+    # arrange
+    expect = "postgresql://testuser:123Secret@localhost:1234/test_database"
+    # act
+    test = create_database_connection_info("testuser", "123Secret", "localhost", "1234", "test_database")
     # assert
     assert test == expect
