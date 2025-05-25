@@ -1,0 +1,29 @@
+"""
+module for the project configuration
+"""
+from pathlib import Path
+
+from pydantic import Field, ConfigDict, SecretStr
+from pydantic_settings import BaseSettings
+
+
+class Settings(BaseSettings):
+    """Project configuration class"""
+
+    PROJECT_PATH: str = str(Path(__file__).parent.parent.parent)
+    API_KEY: SecretStr
+    BASE_URL: str
+    DB_HOST: str
+    DB_PORT: str
+    DB_NAME: str
+    DB_USER: str
+    PGPASSWORD: str
+
+    model_config = ConfigDict(
+        env_file=f"{PROJECT_PATH}/.env",
+        env_file_encoding="utf-8",
+        env_ignore_empty=True,
+        extra="ignore",
+    )
+
+settings = Settings()
