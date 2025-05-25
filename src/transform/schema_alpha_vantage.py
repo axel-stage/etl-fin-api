@@ -61,7 +61,7 @@ class Company(ConfigBaseModel):
 
 
 class IncomeStatementReport(ConfigBaseModel):
-    symbol: str | None = Field(default=None)
+    # symbol: str | None = Field(default=None)
     fiscal_date_ending: date
     currency: str = Field(validation_alias="reportedCurrency")
     revenue: int | None = Field(default=None, validation_alias="totalRevenue")
@@ -78,7 +78,7 @@ class IncomeStatement(ConfigBaseModel):
 
 
 class BalanceSheetReport(ConfigBaseModel):
-    symbol: str | None = Field(default=None)
+    # symbol: str | None = Field(default=None)
     fiscal_date_ending: date
     currency: str = Field(validation_alias="reportedCurrency")
     total_assets: int | None = Field(default=None)
@@ -111,7 +111,7 @@ class BalanceSheet(ConfigBaseModel):
 
 
 class CashFlowReport(ConfigBaseModel):
-    symbol: str | None = Field(default=None)
+    # symbol: str | None = Field(default=None)
     fiscal_date_ending: date
     currency: str = Field(validation_alias="reportedCurrency")
     cash_flow_operations: int | None = Field(default=None, validation_alias="operatingCashflow")
