@@ -1,6 +1,7 @@
 """
 main module
 """
+import argparse
 from config import settings
 from extract.api_client import fetch_api_data
 from transform.schema_alpha_vantage import Company, IncomeStatement, BalanceSheet, CashFlow
@@ -33,10 +34,10 @@ def extract_transform_load(
 
 def main():
     """Data Pipeline entrypoint"""
-
-    #SYMBOL: str = "AMZN"
-    #SYMBOL: str = "MSFT"
-    SYMBOL: str = "META"
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-s", "--symbol",  type=str, required=True, help= "Define single stock symbol")
+    args = parser.parse_args()
+    symbol = args.symbol.upper()
 
     database_connection_info: str = create_database_connection_info(
         settings.DB_USER,
@@ -45,10 +46,10 @@ def main():
         settings.DB_PORT,
         settings.DB_NAME
     )
-    extract_transform_load(SYMBOL, "OVERVIEW", Company, database_connection_info, PostgresQuery.insert_company)
-    extract_transform_load(SYMBOL, "INCOME_STATEMENT", IncomeStatement, database_connection_info, PostgresQuery.insert_income_statement)
-    extract_transform_load(SYMBOL, "BALANCE_SHEET",  BalanceSheet, database_connection_info, PostgresQuery.insert_balance_sheet)
-    extract_transform_load(SYMBOL, "CASH_FLOW", CashFlow, database_connection_info, PostgresQuery.insert_cash_flow)
+    extract_transform_load(symbol, "OVERVIEW", Company, database_connection_info, PostgresQuery.insert_company)
+    extract_transform_load(symbol, "INCOME_STATEMENT", IncomeStatement, database_connection_info, PostgresQuery.insert_income_statement)
+    extract_transform_load(symbol, "BALANCE_SHEET",  BalanceSheet, database_connection_info, PostgresQuery.insert_balance_sheet)
+    extract_transform_load(symbol, "CASH_FLOW", CashFlow, database_connection_info, PostgresQuery.insert_cash_flow)
 
 if __name__ == "__main__":
     logger.info("Start data pipeline")
