@@ -5,7 +5,7 @@ import argparse
 from config import settings
 from extract.api_client import fetch_api_data
 from transform.schema_alpha_vantage import Company, IncomeStatement, BalanceSheet, CashFlow
-from load.postgres_loader import load_database_engine, insert_into_postgresql
+from load.database_loader import load_database_engine, insert_into_postgresql
 from load.postgres_query import PostgresQuery
 from utils.logger import logger
 from utils.helper import create_api_endpoint, insert_symbol, create_database_connection_info
