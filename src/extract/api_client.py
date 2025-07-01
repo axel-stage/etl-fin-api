@@ -25,6 +25,6 @@ def fetch_api_data(url: str) -> dict[str, str | int] | None:
         response = requests.get(url)
         logger.info(response.raise_for_status())
         return response.json()
-    except requests.RequestException as error:
-        logger.error(f"Error fetching data from {url}: {error}")
+    except requests.RequestException:
+        logger.exception(f"Error fetching data from {url}")
         return None

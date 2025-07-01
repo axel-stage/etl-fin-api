@@ -22,11 +22,9 @@ def load_database_engine(database_engine: Callable[[str, str, list[dict]], None]
     """
     def loader(connection: str, query: str, data: list[dict]) -> None:
         try:
-            logger.info("Attempting to load data to the database...")
             database_engine(connection, query, data)
-            logger.info("Data successfully loaded.")
-        except Exception as error:
-            logger.error(f"Failed to load data: {error}")
+        except Exception:
+            logger.exception("Error loading data into database")
     return loader
 
 def insert_into_postgresql(connection_info: str, query: str, records: list[dict]) -> None:
@@ -47,8 +45,9 @@ def insert_into_postgresql(connection_info: str, query: str, records: list[dict]
             with connection.cursor() as running_cursor:
                 try:
                     running_cursor.execute(query, record)
-                except db.Error as error:
-                    logger.error(error)
+                    logger.info(f"PostgreSQL: Insert {record}")
+                except db.Error:
+                    logger.exception("PostgreSQL: Insertion error")
 
 def insert_into_mysql(connection_info: str, query: str, records: list[dict]) -> None:
     """
