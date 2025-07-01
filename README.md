@@ -14,6 +14,18 @@ The project goal is to build a data pipeline that extracts, transform and loads 
 1. [Lessens Learned](#lessens-learned)
 1. [License](#license)
 
+## Goals
+- extracts, transform and load real world data
+- fetch from an REST api
+- validate responses
+- error handling
+- logging
+- handling secrets - api key, db credentials
+- configuration management
+- testing
+- dockerize environment
+- documentation
+
 ## Data Architecture
 
 ## Technology Stack

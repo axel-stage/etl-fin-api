@@ -5,7 +5,7 @@ import argparse
 from config import settings
 from extract.api_client import fetch_api_data
 from transform.schema_alpha_vantage import Company, IncomeStatement, BalanceSheet, CashFlow
-from load.postgres_loader import insert_records
+from load.database_loader import load_database_engine, insert_into_postgresql
 from load.postgres_query import PostgresQuery
 from utils.logger import logger
 from utils.helper import create_api_endpoint, insert_symbol, create_database_connection_info
@@ -30,7 +30,8 @@ def extract_transform_load(
     else:
         records = clean_data.get("data")
     # load
-    insert_records(database_connection_info, query, records)
+    postgres_loader = load_database_engine(insert_into_postgresql)
+    postgres_loader(database_connection_info, query, records)
 
 def main():
     """Data Pipeline entrypoint"""
