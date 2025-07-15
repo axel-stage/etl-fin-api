@@ -19,8 +19,6 @@ class Settings(BaseSettings):
     ENVIRONMENT: str
 
     model_config = ConfigDict(
-        env_file=f"{PROJECT_PATH}/.env",
-        env_file_encoding="utf-8",
         env_ignore_empty=True,
         extra="ignore",
     )

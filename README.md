@@ -24,6 +24,9 @@ The project goal is to build a data pipeline that extracts, transform and loads 
 - configuration management
 - testing
 - dockerize environment
+    - reuseable design
+    - multi stage build
+    - non root user
 - documentation
 
 ## Data Architecture

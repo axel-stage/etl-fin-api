@@ -3,7 +3,7 @@ import logging
 from config import settings
 
 logging.basicConfig(
-    filename=f"{settings.PROJECT_PATH}/logs/pipeline.log",
+    filename=f"{settings.PROJECT_PATH}/data_pipeline_etl_fin_api.log",
     encoding="utf-8",
     filemode="a",
     level=logging.DEBUG,
