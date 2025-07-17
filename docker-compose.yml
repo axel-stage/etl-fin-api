@@ -11,13 +11,23 @@ services:
       - database:/var/lib/postgresql/data
       - ./database/schema:/schema
       - ./database/init-database.sh:/docker-entrypoint-initdb.d/init-postgres.sh
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      retries: 3
+      start_period: 30s
+      timeout: 10s
 
   etl-fin-api:
     container_name: etl-fin-api
-    image: dataengineer24/etl-fin-api
     build: .
+    image: dataengineer24/etl-fin-api
     env_file:
       - path: .env
+    depends_on:
+      database:
+        condition: service_healthy
+        restart: true
 
 volumes:
   database:

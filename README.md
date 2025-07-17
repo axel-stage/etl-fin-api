@@ -16,17 +16,18 @@ The project goal is to build a data pipeline that extracts, transform and loads 
 
 ## Goals
 - extracts, transform and load real world data
-- fetch from an REST api
+- fetch from an RESTful API
 - validate responses
 - error handling
 - logging
-- handling secrets - api key, db credentials
+- handling secrets - API key, Database credentials
 - configuration management
 - testing
 - dockerize environment
     - reuseable design
     - multi stage build
     - non root user
+    - control database startup with health check
 - documentation
 
 ## Data Architecture
