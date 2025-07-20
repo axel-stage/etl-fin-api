@@ -20,7 +20,6 @@ A robust ETL (Extract, Transform, Load) pipeline that ingests real-world finance
  - **Data Validation**: Ensures correctness using pydantic models.
  - **Testing**: Unit tests using pytest.
  - **Configuration Management**: Uses pydantic-settings for environment-based configuration.
- #- Secure Secrets Management: Handles API keys and DB credentials safely.
  - **Logging**: Structured, persistent logging for audit and debugging.
  - **Argument Parser**: Injects the stock symbol at runtime.
  - **Dockerized**: Reusable Dockerfile with multi-stage build and non-root execution.
