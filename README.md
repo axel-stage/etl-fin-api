@@ -1,7 +1,6 @@
 # ETL Data Pipeline for Finance Data
 ## Overview
-The project goal is to build a data pipeline that extracts, transform and loads real-world finance data on a daily basis from a RESTful API from [Alpha Vantage](https://www.alphavantage.co/) into a relational database.
-
+The objective of this project is to implement a robust ETL data pipeline based on Python that programmatically extracts financial data from the [Alpha Vantage](https://www.alphavantage.co/) RESTful API, performs necessary validation and loads the processed data into the staging area (bronze layer) of a relational database.
 ## Table of Contents
 1. [Features](#features)
 1. [High Level Architecture](#high-level-architecture)
@@ -15,7 +14,7 @@ The project goal is to build a data pipeline that extracts, transform and loads 
 1. [License](#license)
 
 ## Features
-A robust ETL (Extract, Transform, Load) pipeline that ingests real-world finance data from a RESTful API, transforms and validates the data and loads it into a relational database. The system is fully containerized using Docker and supports testing, logging, configuration and secrets management.
+A robust ETL (Extract, Transform, Load) pipeline that ingests real-world finance data from a RESTful API, transforms and validates the data and loads it into a relational database. The system is fully containerized using Docker and supports testing, logging, argument parsing during runtime and configuration management.
  - **ETL**: Automatically fetches financial data from a RESTful API.
  - **Data Validation**: Ensures correctness using pydantic models.
  - **Testing**: Unit tests using pytest.
